@@ -1,29 +1,28 @@
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+// testSupabase.ts
+import { supabase, isSupabaseConfigured } from './lib/supabase.ts';
+
+(async () => {
+  // Verifica se o Supabase está configurado
+  if (!isSupabaseConfigured()) {
+    console.log('⚠️ Supabase não está configurado corretamente.');
+    return;
   }
-}
+
+  console.log('✅ Supabase configurado! Testando conexão...');
+
+  try {
+    // Testar leitura da tabela 'profiles'
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .limit(5);
+
+    if (error) {
+      console.error('❌ Erro ao ler profiles:', error);
+    } else {
+      console.log('📋 Perfis encontrados:', data);
+    }
+  } catch (err) {
+    console.error('💥 Erro inesperado:', err);
+  }
+})();
