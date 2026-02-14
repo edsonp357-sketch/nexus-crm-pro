@@ -1,0 +1,7 @@
+{
+  "name": "Nexus CRM Pro",
+  "description": "A high-performance, AI-powered professional CRM featuring sales pipelines, lead management, and advanced analytics with Gemini intelligence.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
