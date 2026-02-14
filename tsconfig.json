@@ -1,28 +1,12 @@
-// testSupabase.ts
-import { supabase, isSupabaseConfigured } from './lib/supabase.ts';
-
-(async () => {
-  // Verifica se o Supabase está configurado
-  if (!isSupabaseConfigured()) {
-    console.log('⚠️ Supabase não está configurado corretamente.');
-    return;
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
-
-  console.log('✅ Supabase configurado! Testando conexão...');
-
-  try {
-    // Testar leitura da tabela 'profiles'
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .limit(5);
-
-    if (error) {
-      console.error('❌ Erro ao ler profiles:', error);
-    } else {
-      console.log('📋 Perfis encontrados:', data);
-    }
-  } catch (err) {
-    console.error('💥 Erro inesperado:', err);
-  }
-})();
+}
