@@ -5,18 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nexus CRM Pro</title>
 
+    <!-- Favicon opcional -->
+    <link rel="icon" href="/favicon.ico" />
+
     <!-- Fonte Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
+    <!-- TailwindCSS via PostCSS (index.css já importa Tailwind) -->
     <link rel="stylesheet" href="/index.css">
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .dark .glass-card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+    </style>
   </head>
 
-  <body class="antialiased">
+  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 transition-colors duration-200 antialiased">
     <div id="root"></div>
 
-    <!-- Vite carrega automaticamente -->
+    <!-- Vite entry point -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
